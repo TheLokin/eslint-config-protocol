@@ -1,5 +1,11 @@
-# Latest v0.1.0
+# Latest v0.1.1
 
-## What's Changed
+## 🐞 Bug Fixes
+
+- Export `protocol` function as default.
+
+# v0.1.0
+
+## 🚀 Features
 
 - Initial release of `eslint-config-protocol`.

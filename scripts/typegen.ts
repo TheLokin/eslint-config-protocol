@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises"
 import { dirname } from "node:path"
 import { fileURLToPath } from "node:url"
 import { builtinRules } from "eslint/use-at-your-own-risk"
-import { protocol } from "../src"
+import protocol from "../src"
 import { compileRule, flatConfigsToPlugins, pluginsToRules } from "./plugins"
 
 const __filename = fileURLToPath(import.meta.url)

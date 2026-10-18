@@ -1,4 +1,4 @@
-import { protocol } from "./src"
+import protocol from "./src"
 
 export default protocol({
   type: "lib",

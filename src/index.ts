@@ -70,7 +70,7 @@ const defaultPluginRenaming = {
  * @returns {FlatConfigComposer<TypedFlatConfigItem, ConfigNames>} The merged
  *   configuration.
  */
-export function protocol(
+export default function protocol(
   options: OptionsConfig & Omit<TypedFlatConfigItem, "files" | "ignores"> = {},
   ...userConfigs: Awaitable<
     TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]

@@ -1,0 +1,42 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.astro/
+
+# cache
+.cache/
+.turbo/
+*.tsbuildinfo
+
+# tests
+coverage/
+
+# environment
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+
+# deploy
+.vercel/
+.netlify/
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+
+# generated types
+src/types/rules.d.ts

@@ -136,19 +136,13 @@ export default function protocol(
     configs.push(typescript({ type: appType, componentExts, ...typescriptOptions }))
   }
 
-  if (enableJsx) configs.push(jsx(resolveSubOptions(options, "jsx")))
+  if (enableJsx) configs.push(jsx())
   if (enableReact) configs.push(react(typescriptOptions))
   if (enableNextJS) configs.push(nextjs())
 
-  if (enableVue) {
-    configs.push(
-      vue({ ignoreTypeScript: !!enableTypeScript, ...resolveSubOptions(options, "vue") }),
-    )
-  }
+  if (enableVue) configs.push(vue({ ignoreTypeScript: !!enableTypeScript }))
 
-  if (enableSvelte) {
-    configs.push(svelte({ ignoreTypeScript: !!enableTypeScript }))
-  }
+  if (enableSvelte) configs.push(svelte({ ignoreTypeScript: !!enableTypeScript }))
 
   if (enableSolid) {
     configs.push(

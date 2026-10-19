@@ -1,12 +1,12 @@
+import { interopDefault } from "../lib/utils"
 import type { TypedFlatConfigItem } from "../types/config"
-import { configs } from "eslint-plugin-regexp"
 
 export async function regexp(): Promise<TypedFlatConfigItem[]> {
-  const config = configs["flat/recommended"] as TypedFlatConfigItem
+  const pluginRegex = await interopDefault(import("eslint-plugin-regexp"))
 
   return [
     {
-      ...config,
+      ...pluginRegex.configs.recommended,
       name: "protocol/regexp/rules",
     },
   ]

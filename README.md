@@ -5,7 +5,7 @@
 - Optional support for [React](#react), [Next.js](#nextjs), [Vue](#vue), [Svelte](#svelte), [Solid](#solid), [Angular](#angular) and [Astro](#astro).
 - Respects `.gitignore` by default.
 - Built on [ESLint flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new).
-- Requires ESLint v9.10.0 or later.
+- Requires ESLint v10.4 or later.
 
 ## Install
 
@@ -96,7 +96,6 @@ import protocol from "eslint-config-protocol"
 export default protocol(
   // Options for the preset.
   {},
-
   // Plain ESLint flat config items can follow the options object.
   // Pass as many as you need.
   {
@@ -117,10 +116,10 @@ export default protocol(
 | `ignores`    | `string[]`                     | `[]`          | Globs to add to the global ignores. `.eslintignore` is no longer supported in flat config, use this option instead. |
 | `gitignore`  | `boolean`                      | `true`        | Add the patterns from `.gitignore` to the global ignores.                                                           |
 | `typescript` | `boolean \| OptionsTypescript` | Auto-detected | Enable TypeScript rules.                                                                                            |
-| `jsx`        | `boolean \| OptionsJSX`        | `true`        | Enable JSX rules.                                                                                                   |
+| `jsx`        | `boolean`                      | `true`        | Enable JSX rules.                                                                                                   |
 | `react`      | `boolean`                      | `false`       | Enable React rules.                                                                                                 |
 | `nextjs`     | `boolean`                      | `false`       | Enable Next.js rules.                                                                                               |
-| `vue`        | `boolean \| OptionsVue`        | `false`       | Enable Vue rules.                                                                                                   |
+| `vue`        | `boolean`                      | `false`       | Enable Vue rules.                                                                                                   |
 | `svelte`     | `boolean`                      | `false`       | Enable Svelte rules.                                                                                                |
 | `solid`      | `boolean`                      | `false`       | Enable Solid rules.                                                                                                 |
 | `angular`    | `boolean`                      | `false`       | Enable Angular rules.                                                                                               |
@@ -141,23 +140,6 @@ Sub-options are available when the corresponding option is set to an object:
 | ------------------------- | --------- | ----------- | ----------------------------------------------- |
 | `typescript.erasableOnly` | `boolean` | `false`     | Enable erasable syntax only rules.              |
 | `typescript.tsconfigPath` | `string`  | `undefined` | Path to the tsconfig used for type-aware rules. |
-| `jsx.a11y`                | `boolean` | `false`     | Enable JSX accessibility rules.                 |
-| `vue.a11y`                | `boolean` | `false`     | Enable Vue accessibility rules.                 |
-
-### Type-Aware Rules
-
-TypeScript is detected automatically, but [type-aware rules](https://typescript-eslint.io/linting/typed-linting/) only run when you provide a tsconfig path:
-
-```js
-// eslint.config.js
-import protocol from "eslint-config-protocol"
-
-export default protocol({
-  typescript: {
-    tsconfigPath: "tsconfig.json",
-  },
-})
-```
 
 ### Erasable Syntax Only
 
@@ -174,17 +156,17 @@ export default protocol({
 })
 ```
 
-### JSX
+### Type-Aware Rules
 
-JSX support is enabled by default. Accessibility rules are opt-in:
+TypeScript is detected automatically, but [type-aware rules](https://typescript-eslint.io/linting/typed-linting/) only run when you provide a tsconfig path:
 
 ```js
 // eslint.config.js
 import protocol from "eslint-config-protocol"
 
 export default protocol({
-  jsx: {
-    a11y: true,
+  typescript: {
+    tsconfigPath: "tsconfig.json",
   },
 })
 ```
@@ -227,19 +209,6 @@ import protocol from "eslint-config-protocol"
 
 export default protocol({
   vue: true,
-})
-```
-
-Accessibility rules can be enabled with `a11y`:
-
-```js
-// eslint.config.js
-import protocol from "eslint-config-protocol"
-
-export default protocol({
-  vue: {
-    a11y: true,
-  },
 })
 ```
 

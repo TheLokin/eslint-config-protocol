@@ -19,24 +19,6 @@ export interface OptionsTypescript {
   tsconfigPath?: string
 }
 
-export interface OptionsJSX {
-  /**
-   * Enable JSX accessibility rules.
-   *
-   * @default false
-   */
-  a11y?: boolean
-}
-
-export interface OptionsVue {
-  /**
-   * Enable Vue accessibility rules.
-   *
-   * @default false
-   */
-  a11y?: boolean
-}
-
 export interface OptionsConfig {
   /**
    * Type of the project.
@@ -77,11 +59,9 @@ export interface OptionsConfig {
   /**
    * Enable JSX rules.
    *
-   * Passing an object also forwards its options, see {@link OptionsJSX}.
-   *
    * @default true
    */
-  jsx?: boolean | OptionsJSX
+  jsx?: boolean
 
   /**
    * Enable React rules.
@@ -100,11 +80,9 @@ export interface OptionsConfig {
   /**
    * Enable Vue rules.
    *
-   * Passing an object also forwards its options, see {@link OptionsVue}.
-   *
    * @default false
    */
-  vue?: boolean | OptionsVue
+  vue?: boolean
 
   /**
    * Enable Svelte rules.

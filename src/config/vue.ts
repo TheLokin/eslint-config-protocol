@@ -1,5 +1,4 @@
 import type { TypedFlatConfigItem } from "../types/config"
-import type { OptionsVue } from "../types/options"
 import { mergeProcessors } from "eslint-merge-processors"
 import { GLOB_VUE } from "../lib/globs"
 import { interopDefault } from "../lib/utils"
@@ -7,15 +6,14 @@ import { interopDefault } from "../lib/utils"
 export async function vue(
   options: {
     ignoreTypeScript?: boolean
-  } & OptionsVue = {},
+  } = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { ignoreTypeScript: hasTypeScript = false, a11y = false } = options
+  const { ignoreTypeScript: hasTypeScript = false } = options
 
-  const [pluginVue, parserVue, processorVueBlocks, pluginVueA11y] = await Promise.all([
+  const [pluginVue, parserVue, processorVueBlocks] = await Promise.all([
     interopDefault(import("eslint-plugin-vue")),
     interopDefault(import("vue-eslint-parser")),
     interopDefault(import("eslint-processor-vue-blocks")),
-    ...(a11y ? [interopDefault(import("eslint-plugin-vuejs-accessibility"))] : []),
   ])
 
   return [
@@ -23,7 +21,6 @@ export async function vue(
       name: "protocol/vue/setup",
       plugins: {
         vue: pluginVue,
-        ...(a11y ? { "vue-a11y": pluginVueA11y } : {}),
       },
       languageOptions: {
         globals: {
@@ -118,32 +115,6 @@ export async function vue(
         "vue/require-prop-types": "off",
         "vue/space-infix-ops": "error",
         "vue/space-unary-ops": ["error", { nonwords: false, words: true }],
-        ...(a11y
-          ? {
-              "vue-a11y/alt-text": "error",
-              "vue-a11y/anchor-has-content": "error",
-              "vue-a11y/aria-props": "error",
-              "vue-a11y/aria-role": "error",
-              "vue-a11y/aria-unsupported-elements": "error",
-              "vue-a11y/click-events-have-key-events": "error",
-              "vue-a11y/form-control-has-label": "error",
-              "vue-a11y/heading-has-content": "error",
-              "vue-a11y/iframe-has-title": "error",
-              "vue-a11y/interactive-supports-focus": "error",
-              "vue-a11y/label-has-for": "error",
-              "vue-a11y/media-has-caption": "warn",
-              "vue-a11y/mouse-events-have-key-events": "error",
-              "vue-a11y/no-access-key": "error",
-              "vue-a11y/no-aria-hidden-on-focusable": "error",
-              "vue-a11y/no-autofocus": "warn",
-              "vue-a11y/no-distracting-elements": "error",
-              "vue-a11y/no-redundant-roles": "error",
-              "vue-a11y/no-role-presentation-on-focusable": "error",
-              "vue-a11y/no-static-element-interactions": "error",
-              "vue-a11y/role-has-required-aria-props": "error",
-              "vue-a11y/tabindex-no-positive": "warn",
-            }
-          : {}),
       },
     },
   ]

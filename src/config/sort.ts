@@ -1,4 +1,5 @@
 import type { TypedFlatConfigItem } from "../types/config"
+import { interopDefault } from "../lib/utils"
 
 export async function sortPackageJson(): Promise<TypedFlatConfigItem[]> {
   return [
@@ -11,6 +12,7 @@ export async function sortPackageJson(): Promise<TypedFlatConfigItem[]> {
           "error",
           {
             order: [
+              // Package identity
               "publisher",
               "name",
               "displayName",
@@ -18,6 +20,7 @@ export async function sortPackageJson(): Promise<TypedFlatConfigItem[]> {
               "version",
               "private",
               "packageManager",
+              // Metadata
               "description",
               "author",
               "contributors",
@@ -28,6 +31,7 @@ export async function sortPackageJson(): Promise<TypedFlatConfigItem[]> {
               "bugs",
               "keywords",
               "categories",
+              // Entry points and exports
               "sideEffects",
               "imports",
               "exports",
@@ -38,24 +42,31 @@ export async function sortPackageJson(): Promise<TypedFlatConfigItem[]> {
               "types",
               "typesVersions",
               "bin",
+              // Published files and runtime requirements
               "icon",
               "files",
               "engines",
+              // Tool-specific configuration
               "activationEvents",
               "contributes",
+              // Scripts
               "scripts",
               "scripts-info",
+              // Dependencies
               "peerDependencies",
               "peerDependenciesMeta",
               "dependencies",
               "optionalDependencies",
               "devDependencies",
+              // Package manager configuration and overrides
               "pnpm",
               "overrides",
               "resolutions",
+              // Git hooks
               "husky",
               "simple-git-hooks",
               "lint-staged",
+              // Legacy configuration
               "eslintConfig",
             ],
             pathPattern: "^$",
@@ -115,12 +126,14 @@ export async function sortTsConfig(): Promise<TypedFlatConfigItem[]> {
           },
           {
             order: [
+              // Project references
               "incremental",
               "composite",
               "tsBuildInfoFile",
               "disableSourceOfProjectReferenceRedirect",
               "disableSolutionSearching",
               "disableReferencedProjectLoad",
+              // Language and environment
               "target",
               "jsx",
               "jsxFactory",
@@ -134,6 +147,7 @@ export async function sortTsConfig(): Promise<TypedFlatConfigItem[]> {
               "emitDecoratorMetadata",
               "experimentalDecorators",
               "libReplacement",
+              // Modules
               "baseUrl",
               "rootDir",
               "rootDirs",
@@ -151,9 +165,11 @@ export async function sortTsConfig(): Promise<TypedFlatConfigItem[]> {
               "allowArbitraryExtensions",
               "allowImportingTsExtensions",
               "allowUmdGlobalAccess",
+              // JavaScript support
               "allowJs",
               "checkJs",
               "maxNodeModuleJsDepth",
+              // Type checking
               "strict",
               "strictBindCallApply",
               "strictFunctionTypes",
@@ -173,6 +189,7 @@ export async function sortTsConfig(): Promise<TypedFlatConfigItem[]> {
               "noUnusedLocals",
               "noUnusedParameters",
               "useUnknownInCatchVariables",
+              // Emit
               "declaration",
               "declarationDir",
               "declarationMap",
@@ -196,6 +213,7 @@ export async function sortTsConfig(): Promise<TypedFlatConfigItem[]> {
               "sourceMap",
               "sourceRoot",
               "stripInternal",
+              // Interop constraints
               "allowSyntheticDefaultImports",
               "esModuleInterop",
               "forceConsistentCasingInFileNames",
@@ -204,10 +222,217 @@ export async function sortTsConfig(): Promise<TypedFlatConfigItem[]> {
               "preserveSymlinks",
               "verbatimModuleSyntax",
               "erasableSyntaxOnly",
+              // Type checking completeness
               "skipDefaultLibCheck",
               "skipLibCheck",
             ],
             pathPattern: "^compilerOptions$",
+          },
+        ],
+      },
+    },
+  ]
+}
+
+export async function sortPnpmWorkspace(): Promise<TypedFlatConfigItem[]> {
+  const [pluginYaml, yamlParser] = await Promise.all([
+    interopDefault(import("eslint-plugin-yml")),
+    interopDefault(import("yaml-eslint-parser")),
+  ])
+
+  return [
+    {
+      name: "protocol/sort/pnpm-workspace",
+      files: ["pnpm-workspace.yaml"],
+      languageOptions: {
+        parser: yamlParser,
+      },
+      plugins: {
+        yaml: pluginYaml,
+      },
+      rules: {
+        "yaml/sort-keys": [
+          "error",
+          {
+            order: [
+              // Workspace
+              "dedupeInjectedDeps",
+              "disallowWorkspaceCycles",
+              "failIfNoMatch",
+              "ignoreWorkspaceCycles",
+              "ignoreWorkspaceRootCheck",
+              "includeWorkspaceRoot",
+              "injectWorkspacePackages",
+              "legacyDirFiltering",
+              "linkWorkspacePackages",
+              "preferWorkspacePackages",
+              "saveWorkspaceProtocol",
+              "sharedWorkspaceLockfile",
+              "syncInjectedDepsAfterScripts",
+              // Catalogs
+              "catalogMode",
+              "catalogPrune",
+              "cleanupUnusedCatalogs",
+              // Dependency resolution
+              "allowedDeprecatedVersions",
+              "blockExoticSubdeps",
+              "ignoredOptionalDependencies",
+              "minimumReleaseAge",
+              "minimumReleaseAgeIgnoreMissingTime",
+              "minimumReleaseAgeStrict",
+              "minimumReleaseAgeExcludePrune",
+              "minimumReleaseAgeExclude",
+              "registrySupportsTimeField",
+              "resolutionMode",
+              "supportedArchitectures",
+              "trustLockfile",
+              "trustPolicy",
+              "trustPolicyIgnoreAfter",
+              "trustPolicyExcludePrune",
+              "trustPolicyExclude",
+              "update",
+              // Peer dependencies
+              "autoInstallPeers",
+              "dedupePeerDependents",
+              "dedupePeers",
+              "peerDependencyRules",
+              "resolvePeersFromWorkspaceRoot",
+              "strictPeerDependencies",
+              // Registry and network
+              "fetchMinSpeedKiBps",
+              "fetchRetries",
+              "fetchRetryFactor",
+              "fetchRetryMaxtimeout",
+              "fetchRetryMintimeout",
+              "fetchTimeout",
+              "fetchWarnTimeoutMs",
+              "gitShallowHosts",
+              "httpProxy",
+              "httpsProxy",
+              "localAddress",
+              "maxsockets",
+              "namedRegistries",
+              "networkConcurrency",
+              "noProxy",
+              "registries",
+              "registry",
+              "strictSsl",
+              // Node.js modules
+              "dlxCacheMaxAge",
+              "enableGlobalVirtualStore",
+              "enableModulesDir",
+              "extendNodePath",
+              "modulesCacheMaxAge",
+              "modulesDir",
+              "nodeExperimentalPackageMap",
+              "nodeLinker",
+              "nodePackageMapType",
+              "packageImportMethod",
+              "preferSymlinkedExecutables",
+              "symlink",
+              "virtualStoreDir",
+              "virtualStoreDirMaxLength",
+              "virtualStoreOnly",
+              "virtualStoreType",
+              // Hoisting
+              "hoist",
+              "hoistingLimits",
+              "hoistPattern",
+              "hoistWorkspacePackages",
+              "publicHoistPattern",
+              "shamefullyHoist",
+              // Store configuration
+              "frozenStore",
+              "storeDir",
+              "strictStorePkgContentCheck",
+              "useRunningStoreServer",
+              "verifyStoreIntegrity",
+              // Lockfile configuration
+              "gitBranchLockfile",
+              "lockfile",
+              "lockfileIncludeTarballUrl",
+              "mergeGitBranchLockfilesBranchPattern",
+              "peersSuffixMaxLength",
+              "preferFrozenLockfile",
+              // Scripts and builds
+              "childConcurrency",
+              "dangerouslyAllowAllBuilds",
+              "enablePrePostScripts",
+              "ignoreDepScripts",
+              "ignoreScripts",
+              "nodeOptions",
+              "requiredScripts",
+              "scriptShell",
+              "shellEmulator",
+              "sideEffectsCache",
+              "sideEffectsCacheReadonly",
+              "strictDepBuilds",
+              "unsafePerm",
+              "verifyDepsBeforeRun",
+              // Node.js and package manager versions
+              "managePackageManagerVersions",
+              "nodeDownloadMirrors",
+              "nodeVersion",
+              "packageManagerStrict",
+              "packageManagerStrictVersion",
+              "pmOnFail",
+              "runtimeOnFail",
+              // CLI and output
+              "ci",
+              "color",
+              "engineStrict",
+              "loglevel",
+              "npmPath",
+              "recursiveInstall",
+              "updateNotifier",
+              "useBetaCli",
+              "useStderr",
+              // Directories and workspace files
+              "cacheDir",
+              "globalBinDir",
+              "globalDir",
+              "globalPnpmfile",
+              "globalShims",
+              "ignorePnpmfile",
+              "npmrcAuthFile",
+              "pnpmfile",
+              "stateDir",
+              // Audit and versioning
+              "audit",
+              "versioning",
+              // Other settings
+              "allowNonAppliedPatches",
+              "dedupeDirectDeps",
+              "deployAllFiles",
+              "ignoreCompatibilityDb",
+              "initAuthorEmail",
+              "initAuthorName",
+              "initAuthorUrl",
+              "initLicense",
+              "initVersion",
+              "optimisticRepeatInstall",
+              "saveExact",
+              "savePrefix",
+              "tag",
+              "packages",
+              "packageConfigs",
+              "overrides",
+              "packageExtensions",
+              "patchedDependencies",
+              "configDependencies",
+              "allowBuilds",
+              "ignoredBuiltDependencies",
+              "neverBuiltDependencies",
+              "onlyBuiltDependencies",
+              "onlyBuiltDependenciesFile",
+              "catalog",
+              "catalogs",
+            ],
+            pathPattern: "^$",
+          },
+          {
+            order: { type: "asc" },
+            pathPattern: ".*",
           },
         ],
       },

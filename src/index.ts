@@ -23,7 +23,7 @@ import { perfectionist } from "./config/perfectionist"
 import { react } from "./config/react"
 import { regexp } from "./config/regexp"
 import { solid } from "./config/solid"
-import { sortPackageJson, sortTsConfig } from "./config/sort"
+import { sortPackageJson, sortPnpmWorkspace, sortTsConfig } from "./config/sort"
 import { svelte } from "./config/svelte"
 import { test } from "./config/test"
 import { toml } from "./config/toml"
@@ -165,7 +165,7 @@ export default function protocol(
   if (enableTest) configs.push(test({ isInEditor }))
 
   if (enableJsonc) configs.push(jsonc(), sortPackageJson(), sortTsConfig())
-  if (enableYaml) configs.push(yaml())
+  if (enableYaml) configs.push(yaml(), sortPnpmWorkspace())
   if (enableToml) configs.push(toml())
 
   if (enableMarkdown) configs.push(markdown({ componentExts: enableVue ? ["vue"] : [] }))

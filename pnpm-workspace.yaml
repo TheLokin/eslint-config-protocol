@@ -1,7 +1,14 @@
-shellEmulator: true
+minimumReleaseAgeStrict: true
+minimumReleaseAgeExcludePrune: true
+
 trustPolicy: no-downgrade
-allowBuilds:
-  esbuild: false
+trustPolicyExcludePrune: true
+
 update:
   ignoreDeps:
     - typescript@7
+
+shellEmulator: true
+
+allowBuilds:
+  esbuild: true

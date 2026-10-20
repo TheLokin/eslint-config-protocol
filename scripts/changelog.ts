@@ -23,6 +23,6 @@ const content = lines
 
 if (!content) throw new Error(`The changelog section for version "${version}" is empty.`)
 
-await writeFile("release.md", content, "utf8")
+await writeFile("release-notes.md", content, "utf8")
 
 console.log(`Extracted changelog for ${version}.`)

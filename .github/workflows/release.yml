@@ -81,7 +81,7 @@ jobs:
             gh release create "$TAG" \
               --verify-tag \
               --title "$TAG" \
-              --notes-file release.md
+              --notes-file release-notes.md
           fi
 
       - name: Publish to npm

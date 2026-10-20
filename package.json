@@ -13,7 +13,12 @@
   },
   "bugs": "https://github.com/TheLokin/eslint-config-protocol/issues",
   "keywords": [
-    "eslint-config"
+    "eslint",
+    "eslint-config",
+    "flat-config",
+    "linter",
+    "code-style",
+    "conventions"
   ],
   "exports": {
     ".": "./dist/index.mjs"

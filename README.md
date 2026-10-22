@@ -1,5 +1,8 @@
 # eslint-config-protocol
 
+[![npm](https://img.shields.io/npm/v/eslint-config-protocol?&logo=npm&logoColor=white&labelColor=CB3837&color=24292F)](https://www.npmjs.com/package/eslint-config-protocol)
+[![ESLint Config Inspector](https://img.shields.io/badge/ESLint-Config%20Inspector-24292F?&logo=eslint&logoColor=white&labelColor=4B32C3)](https://thelokin.github.io/eslint-config-protocol)
+
 - Opinionated by design, but [very customizable](#customization).
 - Works out of the box with TypeScript, JSX, JSON, YAML, TOML, Markdown and more.
 - Optional support for [React](#react), [Next.js](#nextjs), [Vue](#vue), [Svelte](#svelte), [Solid](#solid), [Angular](#angular) and [Astro](#astro).

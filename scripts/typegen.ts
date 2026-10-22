@@ -14,14 +14,10 @@ const configs = await protocol({
     erasableOnly: true,
     tsconfigPath: "tsconfig.json",
   },
-  jsx: {
-    a11y: true,
-  },
+  jsx: true,
   react: true,
   nextjs: true,
-  vue: {
-    a11y: true,
-  },
+  vue: true,
   svelte: true,
   solid: true,
   angular: true,

@@ -28,10 +28,10 @@
     "dist"
   ],
   "scripts": {
-    "dev": "pnpm exec eslint-config-inspector",
+    "dev": "pnpm exec eslint-config-inspector --config eslint.config.ts",
     "typegen": "tsx scripts/typegen.ts",
     "build": "tsdown",
-    "build:inspector": "pnpm exec eslint-config-inspector build --stats --out-dir .eslint-config-inspector",
+    "build:inspector": "pnpm exec eslint-config-inspector build --stats --config eslint.config.ts --base ${INSPECTOR_BASE:-/} --out-dir .eslint-config-inspector",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --fix .",
     "format": "prettier --write ."

@@ -23,6 +23,7 @@ concurrency:
 
 jobs:
   deploy:
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -47,6 +48,8 @@ jobs:
 
       - name: Build inspector
         run: pnpm build:inspector
+        env:
+          INSPECTOR_BASE: eslint-config-protocol
 
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v5

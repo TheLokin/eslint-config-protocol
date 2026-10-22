@@ -38,5 +38,6 @@ coverage/
 # OS
 .DS_Store
 
-# generated types
+# generated code
 src/types/rules.d.ts
+.eslint-config-inspector/

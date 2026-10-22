@@ -28,11 +28,13 @@
     "dist"
   ],
   "scripts": {
+    "dev": "pnpm exec eslint-config-inspector",
     "typegen": "tsx scripts/typegen.ts",
-    "format": "prettier --write .",
-    "lint": "eslint --fix .",
+    "build": "tsdown",
+    "build:inspector": "pnpm exec eslint-config-inspector build --stats --out-dir .eslint-config-inspector",
     "typecheck": "tsc --noEmit",
-    "build": "tsdown"
+    "lint": "eslint --fix .",
+    "format": "prettier --write ."
   },
   "peerDependencies": {
     "eslint": "^10.4"
@@ -79,6 +81,7 @@
     "yaml-eslint-parser": "^2.1.0"
   },
   "devDependencies": {
+    "@eslint/config-inspector": "^3.5.0",
     "@types/json-schema": "^7.0.15",
     "@types/node": "^26.6.5",
     "eslint": "^10.13.0",

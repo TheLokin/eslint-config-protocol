@@ -1,3 +1,9 @@
+# Upcoming
+
+## ✨ Features
+
+- Add support for sorting devEngines in `package.json` files.
+
 # Latest v1.0.0
 
 ## ⚠️ Breaking Changes

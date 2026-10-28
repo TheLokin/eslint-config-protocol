@@ -46,6 +46,7 @@ export async function sortPackageJson(): Promise<TypedFlatConfigItem[]> {
               "icon",
               "files",
               "engines",
+              "devEngines",
               // Tool-specific configuration
               "activationEvents",
               "contributes",
@@ -70,6 +71,10 @@ export async function sortPackageJson(): Promise<TypedFlatConfigItem[]> {
               "eslintConfig",
             ],
             pathPattern: "^$",
+          },
+          {
+            order: ["cpu", "os", "libc", "runtime", "packageManager"],
+            pathPattern: "^devEngines$",
           },
           {
             order: { type: "asc" },

@@ -313,7 +313,7 @@ export default protocol().renamePlugins({
 
 ### Rule Overrides
 
-Most rules are scoped to the file types they apply to: `ts/*` rules only run on `.ts` files, `vue/*` rules only on `.vue` files and so on. Scope your config with `files` to override them:
+Most rules are scoped to the file types they apply to: `ts/*` rules only run on `.ts` files, `react/*` rules only on `.jsx` or `.tsx` files and so on. Scope your config with `files` to override them:
 
 ```js
 // eslint.config.js
@@ -325,10 +325,10 @@ export default protocol(
     typescript: true,
   },
   {
-    // Scope Vue rules to Vue files. Otherwise, the Vue plugin may also handle non-Vue files.
-    files: ["**/*.vue"],
+    // Scope React rules to JSX/TSX files. Otherwise, the React plugin may also handle non-React files.
+    files: ["**/*.{jsx,tsx}"],
     rules: {
-      "vue/operator-linebreak": ["error", "before"],
+      "react/no-missing-key": "error",
     },
   },
   {

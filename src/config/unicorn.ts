@@ -21,7 +21,7 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         "unicorn/no-instanceof-builtins": "error",
         "unicorn/no-new-array": "error",
         "unicorn/no-new-buffer": "error",
-        "unicorn/number-literal-case": "error",
+        "unicorn/number-literal-case": ["error", { hexadecimalValue: "lowercase" }],
         "unicorn/prefer-dom-node-text-content": "error",
         "unicorn/prefer-includes": "error",
         "unicorn/prefer-node-protocol": "error",

@@ -4,6 +4,16 @@
 
 - Add support for sorting devEngines in `package.json` files.
 
+## 📦 Dependencies
+
+- Upgrade `@eslint/markdown` to v9.
+- Upgrade `eslint-plugin-unicorn` to v80.
+- Upgrade `local-pkg` to v2.
+
+## 🐛 Bug Fixes
+
+- Allow lowercase hexadecimal digits in numeric literals.
+
 # Latest v1.0.0
 
 ## ⚠️ Breaking Changes

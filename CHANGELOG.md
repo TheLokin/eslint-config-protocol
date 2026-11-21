@@ -1,4 +1,4 @@
-# Upcoming
+# Latest v1.1.0
 
 ## ✨ Features
 
@@ -14,7 +14,9 @@
 
 - Allow lowercase hexadecimal digits in numeric literals.
 
-# Latest v1.0.0
+Full Changelog: https://github.com/TheLokin/eslint-config-protocol/compare/v1.0.0...v1.1.0
+
+# v1.0.0
 
 ## ⚠️ Breaking Changes
 
